@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pocc Angol</title>
+	<link rel="icon" type="image/png" href="eagle.ico">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto">
+	<link rel="stylesheet" href="main.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="main.js"></script>
+</head>
+<body>
+	{% for thedate in sortedkeys %}
+	<div>
+		<div class="date">{{ dateformatter(thedate) }}</div>
+		<ul class="day">
+			{% for item in vocab[thedate] %}
+			{% if item|length <= 3 %}
+			<li class="nosound">
+			{% else %}
+			<li class="sound" onclick="document.getElementById('{{item[3]}}').play()">
+			{% endif %}
+				{% for index in range(item|length) %}
+				{% if index == 3 %}
+				<audio id="{{item[index]}}" src="/audio/{{item[index]}}"/>
+				{% else %}
+				<div class="item{{ index }}">{{ item[index] }}</div>
+				{% endif %}
+				{% endfor %}
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endfor %}
+</body>
+</html>
