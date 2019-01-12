@@ -2,9 +2,11 @@
 
 export FLASK_APP=main.py
 
-if [$1="live"]; then
+if [ "$1" = "live" ]; then
+	echo LIVE
 	flask run --port 80 --host=0.0.0.0
 else
-	export FLASK_DEBUG=1
+	echo DEBUG
+	# export FLASK_DEBUG=1
 	flask run --port 7117 --host=0.0.0.0
 fi
